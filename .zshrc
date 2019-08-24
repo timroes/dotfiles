@@ -7,13 +7,6 @@ fpath=($ZSHDIR/completion $fpath)
 autoload -U compinit
 compinit
 
-# Check whether we are running on an OSX system and set IS_OSX variable
-if [[ "$(uname)" == "Darwin" ]]; then
-	IS_OSX=1
-else
-	IS_OSX=0
-fi
-
 # Include all modules from modules.d directory (this is also only a config
 # but meant to only contain functions)
 for module in $ZSHDIR/modules.d/*.zsh; do
