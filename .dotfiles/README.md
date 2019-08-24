@@ -4,11 +4,8 @@ The way dotfiles are stored in this repository was inspired by an [Atlassian blo
 
 ## Installation
 
-To get dotfiles on a new system, the following steps need to be executed:
+To get dotfiles on a new system, the following command needs to be executed:
 
 ```sh
-mkdir -p "$HOME/.dotfiles"
-git clone --bare git@github.com:timroes/dotfiles.git "$HOME/.dotfiles/.git"
-cd "$HOME"
-./dotfiles/setup.sh
+curl -s https://raw.githubusercontent.com/timroes/dotfiles/master/.dotfiles/setup.sh | /bin/bash
 ```
