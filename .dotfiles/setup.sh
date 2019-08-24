@@ -1,5 +1,7 @@
 #! /bin/bash
 
+shopt -s expand_aliases
+
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/.git --work-tree=$HOME'
 
 mkdir "$HOME/.dotfiles"
