@@ -12,7 +12,7 @@ if [ $? = 0 ]; then
 else
   echo "Backing up pre-existing dot files."
   mkdir -p "$HOME/.config-backup"
-  config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} $HOME/.config-backup/{}
+  config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} /bin/sh -c 'mkdir -p "$HOME/.config-backup/$(dirname {})"; mv {} $HOME/.config-backup/{};'
   config checkout
 fi
 config config --local status.showUntrackedFiles no
