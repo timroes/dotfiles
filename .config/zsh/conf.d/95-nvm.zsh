@@ -8,9 +8,9 @@ check_node_version() {
 			echo -e "$fg_bold[yellow][.nvmrc] Switching to $nvmrc$reset_color"
 			nvm ls $nodeVersion &> /dev/null
 			if [ $? -eq 0 ]; then
-				nvm use $nvmrc
+				nvm use "$nvmrc"
 			else
-				nvm install $nvmrc
+				nvm install "$nvmrc"
 			fi
 			if [ $? -eq 0 ]; then
 				echo -e "$fg_bold[green]Done!$reset_color"
@@ -23,5 +23,8 @@ check_node_version() {
 
 if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
 	source /usr/share/nvm/init-nvm.sh
+	add-zsh-hook precmd check_node_version
+elif [ -f "$HOME/.nvm/nvm.sh" ]; then
+	source "$HOME/.nvm/nvm.sh"
 	add-zsh-hook precmd check_node_version
 fi
