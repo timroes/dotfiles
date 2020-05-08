@@ -11,3 +11,4 @@ else
 fi
 
 alias lsa='ls -lha'
+alias copy='xclip -selection clipboard'
