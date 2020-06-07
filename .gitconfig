@@ -23,3 +23,5 @@
 		params=$(echo \"$1\" | sed -E 's/([^:]):(.*)/\\1 \\2/'); \
 		shift; \
 		push $params"
+[pull]
+	rebase = false
