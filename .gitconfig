@@ -27,3 +27,5 @@
 	rebase = false
 [fetch]
 	prune = true
+[core]
+	editor = vim
