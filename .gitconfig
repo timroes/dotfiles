@@ -5,6 +5,7 @@
 	b = checkout -b
 	m = checkout master
 	master = checkout master
+	main = checkout main
 	lastdiff = diff HEAD^ HEAD
 	pn = "!git push -u origin \"$(git rev-parse --abbrev-ref HEAD)\""
 	upstream = "!git remote update upstream && git reset --hard upstream/\"$(git rev-parse --abbrev-ref HEAD)\""
