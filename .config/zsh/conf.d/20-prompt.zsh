@@ -24,8 +24,14 @@ user_or_empty() {
 	fi
 }
 
+in_minikube_env() {
+	if [ -v DOCKER_MINIKUBE ]; then
+		echo " %F{magenta}❬k8s❭%f"
+	fi
+}
+
 prompt_precmd() {
-	PROMPT="%{$fg_bold[cyan]%}$(user_or_empty)%3~%{$reset_color%} $(git_prompt)%(!.#.>) "
+	PROMPT="%{$fg_bold[cyan]%}$(user_or_empty)%3~%{$reset_color%} $(git_prompt)$(in_minikube_env)%(!.#.>) "
 }
 
 # Register the prompt_precmd method to execute before each prompt showing
