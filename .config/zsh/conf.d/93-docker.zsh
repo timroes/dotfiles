@@ -7,8 +7,9 @@ k8s() {
     minikube start
   fi
   eval $(minikube docker-env)
+  setopt complete_aliases
+  alias kubectl="minikube kubectl --"
   source <(kubectl completion zsh)
-  alias kubectl='minikube kubectl --'
   export DOCKER_MINIKUBE=true
   echo 'Initialized minikube env.'
 }
