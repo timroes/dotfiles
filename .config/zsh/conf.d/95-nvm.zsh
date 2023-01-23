@@ -3,7 +3,7 @@ check_node_version() {
 	if [[ "$IGNORE_NODE_VERSION" != "1" && -f ".nvmrc" ]]; then
 		nvmrc=`cat .nvmrc`
 		# .. check whether the current node version is the required one
-		if [ `node -v` != `nvm version $nvmrc` ]; then
+		if [ ! -x "$(command -v node)" ] || [ `node -v` != `nvm version $nvmrc` ]; then
 			# If not use nvm to set the version to the one from .node-version
 			echo -e "$fg_bold[yellow][.nvmrc] Switching to $nvmrc$reset_color"
 			nvm ls "$nvmrc" &> /dev/null
