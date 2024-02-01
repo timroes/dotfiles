@@ -32,3 +32,5 @@
 	editor = vim
 [init]
 	defaultBranch = main
+[status]
+	relativePaths = false
