@@ -1,6 +1,6 @@
 check_node_version() {
 	# When a .nvmrc file in the current directory exists ..
-	if [[ "$IGNORE_NODE_VERSION" != "1" && -f ".nvmrc" ]]; then
+	if [ -f ".nvmrc" ]; then
 		nvmrc=`cat .nvmrc`
 		# .. check whether the current node version is the required one
 		if [ ! -x "$(command -v node)" ] || [ `node -v` != `nvm version $nvmrc` ]; then
@@ -19,12 +19,19 @@ check_node_version() {
 			fi
 		fi
 	fi
+	# Check if there's a packageManager entry in the package.json then use corepack
+	if [ -f "package.json" ] && (cat package.json | grep -q '"packageManager"'); then
+		# Note: This will only work with Node V20+, but we ignore older versions here and just fail
+		corepack enable && corepack install
+	fi
 }
 
 if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
 	source /usr/share/nvm/init-nvm.sh
-	add-zsh-hook precmd check_node_version
+	add-zsh-hook chpwd check_node_version
+	check_node_version
 elif [ -f "$HOME/.nvm/nvm.sh" ]; then
 	source "$HOME/.nvm/nvm.sh"
-	add-zsh-hook precmd check_node_version
+	add-zsh-hook chpwd check_node_version
+	check_node_version
 fi

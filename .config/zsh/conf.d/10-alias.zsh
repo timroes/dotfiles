@@ -14,6 +14,5 @@ alias lsa='ls -lha'
 alias copy='xclip -selection clipboard'
 
 alias gw='./gradlew'
-alias gwp='SUB_BUILD=PLATFORM ./gradlew'
 
 alias gitzip='git ls-files | zip archive -@'
