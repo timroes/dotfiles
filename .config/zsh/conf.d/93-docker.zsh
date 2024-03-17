@@ -1,5 +1,8 @@
 alias docker-ips='docker ps --format "{{.ID}}" | xargs docker inspect -f "{{.Name}} --- {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"'
 
+alias pods='watch -n 1 kubectl get pods'
+alias k='kubectl'
+
 # Start a minikube env
 k8s() {
   minikube status &> /dev/null

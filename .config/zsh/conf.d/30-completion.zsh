@@ -21,3 +21,11 @@ if [[ -a "$include_autosuggest" ]]; then
 else
 	echo "You might want to install zsh-autosuggestions from AUR for proper autocompletion."
 fi
+
+include_autocomplete=/usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+if [[ -a "$include_autocomplete" ]]; then
+	# source $include_autocomplete
+	# zstyle ':autocomplete:history-search-backward:*' list-lines 10
+else
+	echo "You might want to install zsh-autocomplete from AUR for proper autocompletion."
+fi
