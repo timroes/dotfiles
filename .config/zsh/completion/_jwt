@@ -1,0 +1,7 @@
+#compdef jwt
+
+_arguments "1:Action:((\
+	encode\:'Encode new JWTs' \
+	decode\:'Decode a JWT' \
+	help\:'Print help message' \
+))"

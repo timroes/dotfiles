@@ -16,3 +16,25 @@ k8s() {
   export DOCKER_MINIKUBE=true
   echo 'Initialized minikube env.'
 }
+
+function pick_pod() {
+  kubectl get pods -o=name | fzf
+}
+
+function kexec() {
+  pod=`pick_pod`
+  kubectl exec -it $pod -- $@
+}
+
+function kbash() {
+  kexec /bin/bash
+}
+
+function ksh() {
+  kexec /bin/sh
+}
+
+function klogs() {
+  pod=`pick_pod`
+  kubectl logs $pod $@
+}
