@@ -13,3 +13,25 @@ minikube-sync-images() {
     fi
   done
 }
+
+update-airbyte-hosts() {
+  if [[ "$(kubectx --current)" != "minikube" ]]; then
+    echo "This command is only available in minikube context."
+    return 1
+  fi
+
+  ingress_ip="$(kubectl -n ingress-nginx get services ingress-nginx-controller -o jsonpath='{$.status.loadBalancer.ingress[0].ip}')"
+
+  if [[ -z "$ingress_ip" ]]; then
+    echo "Ingress IP not found. Is 'minikube tunnel' running?"
+    return 1
+  fi
+
+  echo "Ingress IP address: $ingress_ip"
+
+  echo "Updating /etc/hosts with new ingress IP..."
+
+  sudo sed -i "s/.* \(.*\)\.airbyte\.dev/$ingress_ip \1.airbyte.dev/g" /etc/hosts
+}
+
+export DOCKER_ENVIRONMENT="native"
