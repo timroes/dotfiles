@@ -31,7 +31,7 @@ update-airbyte-hosts() {
 
   echo "Updating /etc/hosts with new ingress IP..."
 
-  sudo sed -i "s/.* \(.*\)\.airbyte\.dev/$ingress_ip \1.airbyte.dev/g" /etc/hosts
+  sudo sed -i "s/.*\([ \t]\+\)\(.*\)\.airbyte\.dev/$ingress_ip\1\2.airbyte.dev/g" /etc/hosts
 }
 
-export DOCKER_ENVIRONMENT="native"
+export DOCKER_PROVIDER="native"
