@@ -7,7 +7,7 @@ alias k='kubectl'
 k8s() {
   minikube status &> /dev/null
   if [ $? -ne 0 ]; then
-    minikube start
+    minikube start --mount=true --mount-string="$HOME:$HOME"
   fi
   eval $(minikube docker-env)
   setopt complete_aliases
