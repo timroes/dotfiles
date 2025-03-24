@@ -1,0 +1,13 @@
+set mouse
+set drawbox
+
+map . set hidden!
+
+map <enter> enter-cmd
+
+cmd enter-cmd ${{
+  $lf -remote "send $id open"
+  if [ $ENTER_EXIT ]; then
+    $lf -remote "send $id quit"
+  fi
+}}
