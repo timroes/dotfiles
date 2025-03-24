@@ -27,11 +27,11 @@ check_node_version() {
 }
 
 if [ -f "/usr/share/nvm/init-nvm.sh" ]; then
-	source /usr/share/nvm/init-nvm.sh
+	source /usr/share/nvm/init-nvm.sh --no-use
 	add-zsh-hook chpwd check_node_version
 	check_node_version
 elif [ -f "$HOME/.nvm/nvm.sh" ]; then
-	source "$HOME/.nvm/nvm.sh"
+	source "$HOME/.nvm/nvm.sh" --no-use
 	add-zsh-hook chpwd check_node_version
 	check_node_version
 fi
