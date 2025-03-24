@@ -43,9 +43,6 @@ case "$mime" in
     text/*|application/json|application/javascript)
         preview_text "$1"
         ;;
-    application/x-xz)
-        xz --list "$1"
-        ;;
     *)
         echo "No preview available"
         echo -e "\e[90m"
