@@ -1,13 +1,23 @@
 set mouse
 set drawbox
 
+set previewer ~/.config/lf/scripts/preview.sh
+set cleaner ~/.config/lf/scripts/cleaner.sh
+
+map D delete
 map . set hidden!
 
 map <enter> enter-cmd
 
 cmd enter-cmd ${{
-  $lf -remote "send $id open"
   if [ $ENTER_EXIT ]; then
+    if [ ! -d "$f" ]; then
+      $lf -remote "send $id up"
+    else
+      $lf -remote "send $id open"
+    fi
     $lf -remote "send $id quit"
+  else
+    $lf -remote "send $id open"
   fi
 }}
