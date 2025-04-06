@@ -21,6 +21,11 @@ check_node_version() {
 	fi
 	# Check if there's a packageManager entry in the package.json then use corepack
 	if [ -f "package.json" ] && (cat package.json | grep -q '"packageManager"'); then
+		# If we have no active Node version (since no .nvmrc was present), switch to the latest LTS version
+		if [[ "$(nvm current)" == "none" ]]; then
+			echo -e "$fg_bold[yellow][nvm] Switching to Node LTS...$reset_color"
+			nvm use --lts
+		fi
 		# Note: This will only work with Node V20+, but we ignore older versions here and just fail
 		corepack enable && corepack install
 	fi
